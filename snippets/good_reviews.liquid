@@ -1,0 +1,23 @@
+{% comment %}
+  Snippet to display only positive product reviews (rating >= 4).
+  Assumes reviews are available in a product.reviews array with fields:
+    - rating: integer
+    - author: string
+    - comment: string
+{% endcomment %}
+
+{% if product.reviews and product.reviews.size > 0 %}
+  <ul class="good-reviews">
+  {% for review in product.reviews %}
+    {% if review.rating >= 4 %}
+      <li class="review">
+        <strong>{{ review.author }}</strong>
+        <span class="rating">{{ review.rating }}/5</span>
+        <p>{{ review.comment }}</p>
+      </li>
+    {% endif %}
+  {% endfor %}
+  </ul>
+{% else %}
+  <p>No reviews yet.</p>
+{% endif %}
